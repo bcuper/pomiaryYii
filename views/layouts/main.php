@@ -42,9 +42,17 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Pomiary', 'items' => [
-                ['label' => 'Wszystkie', 'url' => ['/pomiary/index']],
-                ['label' => 'Temperatura cisnienie wilgotnosc', 'url' => ['/pomiary/tempciswil']],
+            ['label' => 'TCW', 'items' => [
+                //['label' => 'Raw data', 'url' => ['/pomiary/index']],
+                ['label' => 'Temperatura wewnętrzna', 'url' => ['/tcw/tempwew']],
+                ['label' => 'Temperatura zewnętrzna', 'url' => ['/tcw/tempzew']],
+                ['label' => 'Ciśnienie', 'url' => ['/tcw/cisnienie']],
+                ['label' => 'Wilgotność', 'url' => ['/tcw/wilgotnosc']],
+                ['label' => 'Temperatura Ciśnienie Wilgotność', 'url' => ['/tcw/tempciswil']],
+            ]],
+            ['label' => 'Rosliny', 'items' => [
+                ['label' => 'Regal', 'url'=>['/rosliny/parapet']],
+                ['label' => 'Parapet', 'url' => ['/rosliny/regal']],
             ]],
             ['label' => 'Pomiary', 'url' => ['/pomiary/index']],
             Yii::$app->user->isGuest
@@ -76,7 +84,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
 <footer id="footer" class="mt-auto py-3 bg-light">
     <div class="container">
         <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
+            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?> - <?=$_SERVER['REMOTE_ADDR']?></div>
             <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
         </div>
     </div>

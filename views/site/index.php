@@ -6,48 +6,281 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4">Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <div class="col-lg-6">
+                <h2>Temperatura wewnętrzna</h2>
+                <p>Aktualna wartość <?=$aktual_wew?>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p><?php    echo \onmotion\apexcharts\ApexchartsWidget::widget([
+         'type' => 'line',
+         'height' => '200', // default 350
+         'width' => '500', // default 100%
+         'chartOptions' => [
+            'chart' => [
+                'toolbar' => [
+                    'show' => true,
+                    'autoSelected' => 'zoom'
+                ],
+            ],
+            'xaxis' => [
+                'type' => 'datetime',
+                // 'categories' => $categories,
+                'title' => [
+                    'text' => 'Czas',
+                ]
+            ],
+            'yaxis' => [
+                'title' => [
+                    'text' => 'Temparatura',
+                ],
+            ],
 
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+            'stroke' => [
+                'curve' => 'smooth',
+            ],
+
+            'dataLabels' => [
+                'enabled' => false
+            ],
+
+            'legend' => [
+                'verticalAlign' => 'bottom',
+                'horizontalAlign' => 'left',
+            ],
+        ],
+         'series' => $temp_wew
+            
+        ]);
+        ?></p>
+
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                
+            <table class="table">
+                <tr>
+                    <th>Godzina</th>
+                    <th>Wartość</th>
+                </tr>
+                <?php foreach($tab_wew as $row): ?>
+                    <tr>
+                        <td><?=$row['time']?></td>
+                        <td><?=$row['value']?>&#x2103</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-secondary" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+            
         </div>
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Temperatura zewnętrzna</h2>
+                <p>Aktualna wartość <?=$aktual_zew?>
+
+                <p><?php    echo \onmotion\apexcharts\ApexchartsWidget::widget([
+         'type' => 'line',
+         'height' => '200', // default 350
+         'width' => '500', // default 100%
+         'chartOptions' => [
+            'chart' => [
+                'toolbar' => [
+                    'show' => true,
+                    'autoSelected' => 'zoom'
+                ],
+            ],
+            'xaxis' => [
+                'type' => 'datetime',
+                // 'categories' => $categories,
+                'title' => [
+                    'text' => 'Czas',
+                ]
+            ],
+            'yaxis' => [
+                'title' => [
+                    'text' => 'Temparatura',
+                ],
+            ],
+
+            'stroke' => [
+                'curve' => 'smooth',
+            ],
+
+            'dataLabels' => [
+                'enabled' => false
+            ],
+
+            'legend' => [
+                'verticalAlign' => 'bottom',
+                'horizontalAlign' => 'left',
+            ],
+        ],
+         'series' => $temp_zew
+            
+        ]);
+        ?></p>
+
+            </div>
+            <div class="col-lg-4">
+                
+            <table class="table">
+                <tr>
+                    <th>Godzina</th>
+                    <th>Wartość</th>
+                </tr>
+                <?php foreach($tab_zew as $row): ?>
+                    <tr>
+                        <td><?=$row['time']?></td>
+                        <td><?=$row['value']?>&#x2103</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+
+                
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Wilgotność</h2>
+                <p>Aktualna wartość <?=$aktual_wil?></p>
+
+                <p><?php    echo \onmotion\apexcharts\ApexchartsWidget::widget([
+         'type' => 'line',
+         'height' => '200', // default 350
+         'width' => '500', // default 100%
+         'chartOptions' => [
+            'chart' => [
+                'toolbar' => [
+                    'show' => true,
+                    'autoSelected' => 'zoom'
+                ],
+            ],
+            'xaxis' => [
+                'type' => 'datetime',
+                // 'categories' => $categories,
+                'title' => [
+                    'text' => 'Czas',
+                ]
+            ],
+            'yaxis' => [
+                'title' => [
+                    'text' => 'Wilgotność',
+                ],
+            ],
+
+            'stroke' => [
+                'curve' => 'smooth',
+            ],
+
+            'dataLabels' => [
+                'enabled' => false
+            ],
+
+            'legend' => [
+                'verticalAlign' => 'bottom',
+                'horizontalAlign' => 'left',
+            ],
+        ],
+         'series' => $wilgotnosc
+            
+        ]);
+        ?></p>
+
+            </div>
+            <div class="col-lg-4">
+                
+            <table class="table">
+                <tr>
+                    <th>Godzina</th>
+                    <th>Wartość</th>
+                </tr>
+                <?php foreach($tab_wil as $row): ?>
+                    <tr>
+                        <td><?=$row['time']?></td>
+                        <td><?=$row['value']?>&#x2103</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+
+                
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Ciśnienie</h2>
+                <p>Aktualna wartość <?=$aktual_cis?></p>
+
+                <p><?php    echo \onmotion\apexcharts\ApexchartsWidget::widget([
+         'type' => 'line',
+         'height' => '200', // default 350
+         'width' => '500', // default 100%
+         'chartOptions' => [
+            'chart' => [
+                'toolbar' => [
+                    'show' => true,
+                    'autoSelected' => 'zoom'
+                ],
+            ],
+            'xaxis' => [
+                'type' => 'datetime',
+                // 'categories' => $categories,
+                'title' => [
+                    'text' => 'Czas',
+                ]
+            ],
+            'yaxis' => [
+                'title' => [
+                    'text' => 'Wilgotność',
+                ],
+            ],
+
+            'stroke' => [
+                'curve' => 'smooth',
+            ],
+
+            'dataLabels' => [
+                'enabled' => false
+            ],
+
+            'legend' => [
+                'verticalAlign' => 'bottom',
+                'horizontalAlign' => 'left',
+            ],
+        ],
+         'series' => $cisnienie
+            
+        ]);
+        ?></p>
+
+            </div>
+            <div class="col-lg-4">
+                
+            <table class="table">
+                <tr>
+                    <th>Godzina</th>
+                    <th>Wartość</th>
+                </tr>
+                <?php foreach($tab_cis as $row): ?>
+                    <tr>
+                        <td><?=$row['time']?></td>
+                        <td><?=$row['value']?>&#x2103</td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+
+                
+            </div>
+            
+        </div>
+        
 
     </div>
 </div>

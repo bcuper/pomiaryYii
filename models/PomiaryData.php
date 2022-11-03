@@ -48,6 +48,30 @@ class PomiaryData extends Pomiary
         return $nowa;
     }
 
+    public function zwrocDaneDoWykresuGodziny(string $miejsce, string $nazwa, int $godziny)
+    {
+        $time = date("Y-m-d H:i:s", strtotime('-'.$godziny.' hours'));
+        //echo $time;
+        $temp = Pomiary::find()->where(['miejsce' => $miejsce])->andWhere(['>', 'time', $time])->all(); 
+        $nowa = [];
+        $n1 = [];
+        foreach ($temp as $row) {
+            $n1[] = [$row['time'],$row['value']];   
+        }
+        $nowa[] = [
+            'name' => $nazwa,
+            'data' => $n1,
+        ];
+        return $nowa;
+    }
+
+    public function zwrocDaneDoTabelki(string $miejsce, int $godziny)
+    {
+        $time = date("Y-m-d H:i:s", strtotime('-'.$godziny.' hours'));
+        $temp = Pomiary::find()->where(['miejsce' => $miejsce])->andWhere(['>', 'time', $time])->orderBy('time DESC')->limit(6)->all(); 
+        return $temp;
+    }
+
     public function zwrocNajnowszaWartosc(string $miejsce, string $jednostka='')
     {
         $dane = $temp = Pomiary::find()->where(['miejsce' => $miejsce])->orderBy('time DESC')->one();

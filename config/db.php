@@ -3,8 +3,8 @@
 return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=pomiary',
-    'username' => 'root',
-    'password' => 'skobelek93CB',
+    'username' => 'admin',
+    'password' => 'Syol7TBG0QjJ',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)

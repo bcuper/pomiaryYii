@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\PomiaryData;
 
 class SiteController extends Controller
 {
@@ -61,8 +62,23 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
-    }
+        $pomiaryData = new PomiaryData();
+  
+        return $this->render('index',[
+            'temp_wew' => $pomiaryData->zwrocDaneDoWykresuGodziny('temp_wew', 'Temp wew', 24),
+            'aktual_wew' => $pomiaryData->zwrocNajnowszaWartosc('temp_wew', '&#x2103'),
+            'tab_wew' => $pomiaryData->zwrocDaneDoTabelki('temp_wew', 24),
+            'temp_zew' => $pomiaryData->zwrocDaneDoWykresuGodziny('temp_zew', 'Temp zew', 24),
+            'aktual_zew' => $pomiaryData->zwrocNajnowszaWartosc('temp_wew', '&#x2103'),
+            'tab_zew' => $pomiaryData->zwrocDaneDoTabelki('temp_zew', 24),
+            'cisnienie' => $pomiaryData->zwrocDaneDoWykresuGodziny('cisnienie', 'Cisnienie', 24),
+            'aktual_cis' => $pomiaryData->zwrocNajnowszaWartosc('cisnienie', 'hPa'),
+            'tab_cis' => $pomiaryData->zwrocDaneDoTabelki('cisnienie', 24),
+            'wilgotnosc' => $pomiaryData->zwrocDaneDoWykresuGodziny('wilgotnosc', 'Wilgotnosc', 24),
+            'aktual_wil' => $pomiaryData->zwrocNajnowszaWartosc('wilgotnosc',  '%'),
+            'tab_wil' => $pomiaryData->zwrocDaneDoTabelki('wilgotnosc', 24),
+        ]);
+     }
 
     /**
      * Login action.

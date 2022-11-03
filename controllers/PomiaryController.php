@@ -8,12 +8,14 @@ use app\models\PomiaryData;
 use yii\filters\VerbFilter;
 use app\models\PomiarySearch;
 use yii\web\NotFoundHttpException;
+use yii\data\Pagination;
 
 /**
  * PomiaryController implements the CRUD actions for Pomiary model.
  */
 class PomiaryController extends Controller
 {
+    private $defaultPageSize = 10;
     /**
      * @inheritDoc
      */
@@ -133,25 +135,9 @@ class PomiaryController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionTempciswil()
-    {
-        $pomiaryData = new PomiaryData();
-        $temp_wew = $pomiaryData->zwrocDaneDoWykresu('temp_wew', 'Temp wew');
-        $temp_zew = $pomiaryData->zwrocDaneDoWykresu('temp_zew', 'Temp zew');
-        $cisnienie = $pomiaryData->zwrocDaneDoWykresu('cisnienie', 'Cisnienie');
-        $wilgotnosc = $pomiaryData->zwrocDaneDoWykresu('wilgotnosc', 'Wilgotnosc');
-        $aktual_wew = $pomiaryData->zwrocNajnowszaWartosc('temp_wew', '&#x2103');
-        return $this->render('tempciswil', [
-            'temp_wew' => $temp_wew, 
-            'aktual_wew' => $aktual_wew,
-            'temp_zew' => $temp_zew,
-            'aktual_zew' => $pomiaryData->zwrocNajnowszaWartosc('temp_zew', '&#x2103'),
-            'cisnienie' => $cisnienie,
-            'aktual_cis' => $pomiaryData->zwrocNajnowszaWartosc('cisnienie', 'hPa'),
-            'wilgotnosc' => $wilgotnosc,
-            'aktual_wil' => $pomiaryData->zwrocNajnowszaWartosc('wilgotnosc',  '%'),
-        ]);
-    }
+
+    
+
 
     
 }
