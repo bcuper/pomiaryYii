@@ -16,6 +16,7 @@ class RoslinyController extends \yii\web\Controller
         $pomiary = new PomiaryData();
         return $this->render('parapet',[
             'wykres' => $pomiary->zwrocDanedoWykresuRosliny('Parapet'),
+            'tabelka' => $pomiary->zwrocDaneDoTabelkiRosliny('Parapet'),
         ]);
     }
 
@@ -25,6 +26,7 @@ class RoslinyController extends \yii\web\Controller
 
         return $this->render('regal', [
             'wykres' => $pomiary->zwrocDanedoWykresuRosliny('Regal'),
+            'tabelka' => $pomiary->zwrocDaneDoTabelkiRosliny('Regal'),
         ]);   
     }
 

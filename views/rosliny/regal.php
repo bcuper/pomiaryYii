@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'yaxis' => [
                 'title' => [
-                    'text' => 'Temparatura',
+                    'text' => 'Wartość',
                 ],
             ],
 
@@ -52,6 +52,18 @@ $this->params['breadcrumbs'][] = $this->title;
             
         ]);
         ?></p>
+
+<table class="table table-sm table-striped table-bordered">
+            <?php foreach($tabelka as $row=>$val ): ?>
+                <tr>
+                    <th>Port <?=$row?></th>
+                    <?php foreach ($val as $pomiar): ?>
+                        <td class="text-center"><?=$pomiar[0]?><br><small><?=$pomiar[1]?></small></td>
+                        <?php endforeach; ?>
+                </tr>
+
+            <?php endforeach; ?>
+        </table>
     
     </div>
         

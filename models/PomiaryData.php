@@ -96,4 +96,18 @@ class PomiaryData extends Pomiary
         }
         return $ret;
     }
+
+    public function zwrocDaneDoTabelkiRosliny(string $miejsce)
+    {
+        $ret = [];
+        for ($i = 0; $i < 16; $i++) {
+            $temp = Pomiary::find()->where(['miejsce' => $miejsce, 'port' => $i])->orderBy('time DESC')->limit(10)->all();
+            $n = [];
+            foreach ($temp as $row) {
+                $n[] = [$row['value'], $row['time']];
+            }
+            $ret[$i] = $n; 
+        }
+        return $ret;
+    }
 }
