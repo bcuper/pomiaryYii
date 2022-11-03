@@ -1,6 +1,8 @@
 <?php
 
 namespace app\controllers;
+use app\models\PomiaryData;
+use app\models\Parapet;
 
 class RoslinyController extends \yii\web\Controller
 {
@@ -11,12 +13,19 @@ class RoslinyController extends \yii\web\Controller
 
     public function actionParapet()
     {
-        return $this->render('parapet');
+        $pomiary = new PomiaryData();
+        return $this->render('parapet',[
+            'wykres' => $pomiary->zwrocDanedoWykresuRosliny('Parapet'),
+        ]);
     }
 
     public function actionRegal()
     {
-        return $this->render('regal');   
+        $pomiary = new PomiaryData();
+
+        return $this->render('regal', [
+            'wykres' => $pomiary->zwrocDanedoWykresuRosliny('Regal'),
+        ]);   
     }
 
 }

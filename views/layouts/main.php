@@ -51,8 +51,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
                 ['label' => 'Temperatura Ciśnienie Wilgotność', 'url' => ['/tcw/tempciswil']],
             ]],
             ['label' => 'Rosliny', 'items' => [
-                ['label' => 'Regal', 'url'=>['/rosliny/parapet']],
-                ['label' => 'Parapet', 'url' => ['/rosliny/regal']],
+                ['label' => 'Regal', 'url'=>['/rosliny/regal']],
+                ['label' => 'Parapet', 'url' => ['/rosliny/parapet']],
             ]],
             ['label' => 'Pomiary', 'url' => ['/pomiary/index']],
             Yii::$app->user->isGuest

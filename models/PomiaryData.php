@@ -79,4 +79,21 @@ class PomiaryData extends Pomiary
         return $ret;
 
     }
+
+    public function zwrocDanedoWykresuRosliny(string $miejsce, int $godziny = 24)
+    {
+        $ret = [];
+        for ($i = 0; $i < 16; $i++) {
+            $temp = Pomiary::find()->where(['miejsce' => $miejsce, 'port' => $i])->orderBy('time DESC')->all();
+            $t1 = [];
+            foreach ($temp as $row) {
+                $t1[] = [$row['time'],$row['value']];   
+            }
+           $ret[] = [
+            'name' => 'Port '.$i,
+            'data' => $t1,
+           ];
+        }
+        return $ret;
+    }
 }
