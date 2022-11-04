@@ -56,7 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <table class="table table-sm table-striped table-bordered">
             <?php foreach($tabelka as $row=>$val ): ?>
                 <tr>
-                    <th>Port <?=$row?></th>
+                    <th>
+                    <?= Html::a('Port '.$row, ['szczegoly', 'miejsce' => 'Regal', 'port' => $row], ['class' => 'btn btn-primary btn-sm']) ?>
+                    </th>
                     <?php foreach ($val as $pomiar): ?>
                         <td class="text-center"><?=$pomiar[0]?><br><small><?=$pomiar[1]?></small></td>
                         <?php endforeach; ?>

@@ -3,16 +3,18 @@ use yii\helpers\Html;
 use yii\bootstrap5\LinkPager;
 
 
-$this->title = 'Parapet';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Szczegoly '.$miejsce. '/'.$port;
+$this->params['breadcrumbs'][] = ['label' =>$miejsce, 'url' =>[strtolower($miejsce)]  ];
+$this->params['breadcrumbs'][] = $port;
+
 ?>
 <div class="pomiary-index">
 
-    <h1>
-        Rośliny Parapet
-    </h1>
 
-    <p><?php    echo \onmotion\apexcharts\ApexchartsWidget::widget([
+<h1>Miejsce: <?=$miejsce?></h1>
+<h2>Port: <?=$port?><br></h2>
+
+<p><?php    echo \onmotion\apexcharts\ApexchartsWidget::widget([
          'type' => 'line',
          'height' => '500', // default 350
          'width' => '100%', // default 100%
@@ -49,27 +51,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'horizontalAlign' => 'left',
             ],
         ],
-         'series' => $wykres
+         'series' => $wykres,
             
         ]);
         ?></p>
+    <div class="container-fluid">
+        <?php echo LinkPager::widget(['pagination'=>$pagination]); ?>
 
-<table class="table table-sm table-striped table-bordered">
-            <?php foreach($tabelka as $row=>$val ): ?>
-                <tr>
-                    <th class="text-center align-top">
-                    <?= Html::a('Port '.$row, ['szczegoly', 'miejsce' => 'Parapet', 'port' => $row], ['class' => 'btn btn-primary btn-sm']) ?>
-                    </th>
-                    <?php foreach ($val as $pomiar): ?>
-                        <td class="text-center"><?=$pomiar[0]?><br><small><?=$pomiar[1]?></small></td>
-                        <?php endforeach; ?>
-                </tr>
-
+    <table class="table table-sm">
+        <tr>
+            <th>Czas</th>
+            <th>Wartość</th>
+        </tr>
+        <?php foreach($tabela as $wiersz): ?>
+            <tr>
+                <td><?=$wiersz['time']?></td>
+                <td><?=$wiersz['value']?></td>
+            </tr>
             <?php endforeach; ?>
-        </table>
-    
-    </div>
-        
-    
-    </div>
-        
+    </table>
+    <?php echo LinkPager::widget(['pagination'=>$pagination]); ?>
+        </div>
+
+</div>
