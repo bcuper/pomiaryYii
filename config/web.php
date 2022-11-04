@@ -52,6 +52,11 @@ $config = [
         */
     ],
     'params' => $params,
+    'container' => [
+            'definitions' => [
+                \yii\widgets\LinkPager::class => \yii\bootstrap5\LinkPager::class,
+            ],
+        ],
 ];
 
 if (YII_ENV_DEV) {

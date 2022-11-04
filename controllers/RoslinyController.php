@@ -2,7 +2,8 @@
 
 namespace app\controllers;
 use app\models\PomiaryData;
-use app\models\Parapet;
+use app\models\Pomiary;
+use yii\data\Pagination;
 
 class RoslinyController extends \yii\web\Controller
 {
@@ -28,6 +29,30 @@ class RoslinyController extends \yii\web\Controller
             'wykres' => $pomiary->zwrocDanedoWykresuRosliny('Regal'),
             'tabelka' => $pomiary->zwrocDaneDoTabelkiRosliny('Regal'),
         ]);   
+    }
+
+    public function actionSzczegoly(string $miejsce, int $port)
+    {
+        $pomiary = new PomiaryData();
+
+        $query = Pomiary::find()->where(['miejsce'=>$miejsce, 'port' => $port]);
+        $pagination = new Pagination([
+            'defaultPageSize' => 20,
+            'totalCount' => $query->count(),
+        ]);
+        $tabelka = $query->orderBy('time DESC')
+                    ->offset($pagination->offset)
+                    ->limit($pagination->limit)
+                    ->all();
+
+
+        return $this->render('szczegoly',[
+            'miejsce' => $miejsce,
+            'port' => $port,
+            'wykres' => $pomiary->zwrocDaneWykresSzczegoly($miejsce, $port),
+            'tabela' => $tabelka,
+            'pagination' => $pagination,
+        ]);
     }
 
 }

@@ -110,4 +110,20 @@ class PomiaryData extends Pomiary
         }
         return $ret;
     }
+
+    public function zwrocDaneWykresSzczegoly(string $miejsce, int $port)
+    {
+        $ret = [];
+        $temp = Pomiary::find()->where(['miejsce' => $miejsce, 'port' => $port])->orderBy('time DESC')->all();
+        $n=[];
+        foreach($temp as $row) {
+            $n[] = [$row['time'], $row['value']];
+        }
+        $ret[] = [
+            'name' => 'szczegoly',
+            'data' => $n,
+        ];
+        return $ret;
+    }
+
 }
