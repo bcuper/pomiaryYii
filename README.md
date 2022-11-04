@@ -12,7 +12,8 @@ rapidly creating small projects.
 The template contains the basic features including user login/logout and a contact page.
 It includes all commonly used configurations that would allow you to focus on adding new
 features to your application.
-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
+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 --old
+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 -- new
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
